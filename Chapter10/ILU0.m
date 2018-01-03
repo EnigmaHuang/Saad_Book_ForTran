@@ -1,5 +1,6 @@
 function [lu_val, u_ptr, icode] = ILU0(n, row_ptr, col_idx, a_val)
-% Incomplete LU Factorization for sparse matrix in CSR format
+% Incomplete LU Factorization with zero fill-in, 
+% Using CSR format as the input and output of the matrix.
 % Modified from Yousef Saad's ``Iterative Methods for Sparse Linear Systems'', 
 % FORTRAN code list in section 10.3.2, variable names are changed 
 % according to ALgorithm 10.4 in the same section
@@ -12,8 +13,8 @@ function [lu_val, u_ptr, icode] = ILU0(n, row_ptr, col_idx, a_val)
 % icode  : 0 for normal return, k for zero pivot at step k
 
 	lu_val = a_val;
-	u_ptr  = zeros(1, n);
-	col_idx_mapper = zeros(1, n);
+	u_ptr  = zeros(n, 1);
+	col_idx_mapper = zeros(n, 1);
 	
 	for i = 1 : n
 		j1 = row_ptr(i);
@@ -28,11 +29,11 @@ function [lu_val, u_ptr, icode] = ILU0(n, row_ptr, col_idx, a_val)
 		for j = j1 : j2
 			k = col_idx(j);
 			if (k < i)
-				lu_val(j) = lu_val(j) / lu_val(u_ptr(k));
+				lu_val(j) = lu_val(j) / lu_val(u_ptr(k));    % lu_val(j) == a_{ik} in Algorithm 10.4
 				for jj = u_ptr(k) + 1 : row_ptr(k + 1) - 1;
-					jw = col_idx_mapper(col_idx(jj));
+					jw = col_idx_mapper(col_idx(jj));        % col_idx(jj) == j in Algorithm 10.4
 					if (jw ~= 0)
-						lu_val(jw) = lu_val(jw) - lu_val(j) * lu_val(jj);
+						lu_val(jw) = lu_val(jw) - lu_val(j) * lu_val(jj);  % lu_val(jj) == a_{kj} in Algorithm 10.4
 					end
 				end
 			else

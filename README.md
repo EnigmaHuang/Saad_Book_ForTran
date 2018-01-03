@@ -25,7 +25,7 @@ Chapter 9: Preconditioned Iterations, in [this repo](https://github.com/EnigmaHu
 
 Chapter 10: Preconditioning Techniques (in directory `Chapter10`)
 
-*   Incomplete LU factorization with zero fill-in (ILU(0), using CSR format matrix as input and output)
+*   (Modified) Incomplete LU factorization with zero fill-in (MILU(0) / ILU(0)), using CSR format matrix as input and output
 
 
 
