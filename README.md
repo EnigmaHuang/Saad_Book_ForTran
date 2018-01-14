@@ -6,12 +6,12 @@ Some "Formula Translations" for professor Yousef Saad's book "[Iterative Methods
 
 ## Index for the Algorithms
 
-Chapter 4:
+Chapter 4: Basic Iterative Methods ( (in directory `Chapter4`))
 
 *   Jacobi Iteration;
 *   Gauss-Seidel Iteration;
 *   Block Jacobi Iteration (for illustrating the parallel Block Jacobi preconditioner in Chapter 11);
-*   Block Gauss-Seidel Iteration/
+*   Block Gauss-Seidel Iteration.
 
 Chapter 6 & 7: Krylov Subspace Methods, in [this repo](https://github.com/EnigmaHuang/Krylov_Subspace_Methods)
 
